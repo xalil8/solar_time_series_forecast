@@ -34,3 +34,28 @@ KN_train_pred = KN.predict(x_train)
 KN_test_pred = KN.predict(x_test)
 
 metrics(y_train,KN_train_pred,y_test,KN_test_pred)
+
+
+
+
+##############################################################
+ridge_train =[]
+ridge_test = []
+lasso_train = []
+lasso_test = []
+for i in errors:
+    ridge_train.append(i["ridge"][0])
+    ridge_test.append(i["ridge"][1])
+    lasso_train.append(i["lasso"][0])
+    lasso_test.append(i["lasso"][1])
+
+aylar = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+seri1  = pd.Series(ridge_train) 
+seri2  = pd.Series(ridge_test) 
+seri3  = pd.Series(lasso_train) 
+seri4  = pd.Series(lasso_test) 
+seri5 = pd.Series(aylar)
+
+frame = {"months":seri5,"ridge_train":ridge_train, "ridge_test":ridge_test,"lasso_train":lasso_train,"lasso_test":lasso_test}
+result = pd.DataFrame(frame)
