@@ -59,3 +59,17 @@ seri5 = pd.Series(aylar)
 
 frame = {"months":seri5,"ridge_train":ridge_train, "ridge_test":ridge_test,"lasso_train":lasso_train,"lasso_test":lasso_test}
 result = pd.DataFrame(frame)
+
+
+###################################################################
+
+data = result
+
+fig = go.Figure()
+fig.add_trace(go.Bar(x=train_errors["months"],y=train_errors["ridge"],name='Ridge Model Train Results', marker_color='indianred'))
+
+fig.add_trace(go.Bar(x=train_errors["months"], y=test_errors["ridge"], name='Ridge Model Test Results',marker_color='lightsalmon'))
+
+# Here we modify the tickangle of the xaxis, resulting in rotated labels.
+fig.update_layout(barmode='group', xaxis_tickangle=-45,title="(-1,1) normalization, 3 encoding")
+fig.show()
