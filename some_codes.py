@@ -73,3 +73,64 @@ fig.add_trace(go.Bar(x=train_errors["months"], y=test_errors["ridge"], name='Rid
 # Here we modify the tickangle of the xaxis, resulting in rotated labels.
 fig.update_layout(barmode='group', xaxis_tickangle=-45,title="(-1,1) normalization, 3 encoding")
 fig.show()
+
+
+
+######################################################################
+
+
+def calculate_ridge(x_train,x_test,y_train,y_test):
+    model = Ridge(alpha=1) 
+    model.fit(x_train,y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+
+
+def calculate_lasso(x_train,x_test,y_train,y_test):
+    model = Lasso(alpha=1) 
+    model.fit(x_train,y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+    
+def calculate_linear_reg(x_train,x_test,y_train,y_test):
+
+    model = LinearRegression()
+    model.fit(x_train, y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+def calculate_xgb(x_train,x_test,y_train,y_test):
+    model = XGBRegressor()
+    model.fit(x_train, y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+def calculate_kneighbors(x_train,x_test,y_train,y_test):
+    model = KNeighborsRegressor()
+    model.fit(x_train, y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+def calculate_decisiontree(x_train,x_test,y_train,y_test):
+    model = DecisionTreeRegressor()
+    model.fit(x_train, y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
+def calculate_randomforest(x_train,x_test,y_train,y_test):
+    model = RandomForestRegressor()
+    model.fit(x_train, y_train)
+    train_prediction = model.predict(x_train)
+    test_prediction = model.predict(x_test)
+    return mean_squared_error(y_train, train_prediction), mean_squared_error(y_test, test_prediction)
+
